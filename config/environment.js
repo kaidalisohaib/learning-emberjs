@@ -45,6 +45,8 @@ module.exports = function (environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+  } else {
+    ENV.GEOAPIFY_API_KEY = process.env.GEOAPIFY_API_KEY;
   }
 
   return ENV;
