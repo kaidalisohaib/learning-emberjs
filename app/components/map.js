@@ -10,7 +10,7 @@ export default class MapComponent extends Component {
     let dimensions = `width=${width}&height=${height}`;
     let zoomValue = `zoom=${zoom}`;
     let accessToken = `apiKey=${this.token}`;
-    return `${MAPBOX_API}?${coordinates}&${dimensions}&${zoomValue}&${accessToken}`;
+    return `${MAPBOX_API}?style=klokantech-basic&${coordinates}&${dimensions}&${zoomValue}&${accessToken}`;
   }
   get token() {
     return encodeURIComponent(ENV.GEOAPIFY_API_KEY);
