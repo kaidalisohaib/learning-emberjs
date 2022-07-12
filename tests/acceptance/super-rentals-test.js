@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { click, visit, currentURL } from '@ember/test-helpers';
+import { click, find, visit, currentURL } from '@ember/test-helpers';
 import { setupApplicationTest } from 'learning-emberjs/tests/helpers';
 
 module('Acceptance | super rentals', function (hooks) {
@@ -25,6 +25,18 @@ module('Acceptance | super rentals', function (hooks) {
 
     await click('.rental:first-of-type a');
     assert.strictEqual(currentURL(), '/rentals/grand-old-mansion');
+
+    assert.dom('.share.button').hasText('Share on Twitter');
+
+    let button = find('.share.button');
+
+    let tweetURL = new URL(button.href);
+    assert.strictEqual(tweetURL.host, 'twitter.com');
+
+    assert.strictEqual(
+      tweetURL.searchParams.get('url'),
+      `${window.location.origin}/rentals/grand-old-mansion`
+    );
   });
 
   test('visiting /rentals/grand-old-mansion', async function (assert) {
